@@ -1,47 +1,3 @@
-const blog_detail = new Vue({
-  el: '#blog_detail',
-  data: {
-    title: '',
-    views: 0,
-    tags: '',
-    ctime: '',
-    content: '',
-  },
-  computed: {
-
-  },
-  created() {
-    var searcheUrlParams = location.search.indexOf("?") > -1 ? location.search.split("?")[1].split("&") : "";
-    if (searcheUrlParams == "") {
-      return;
-    }
-    var bid = -1;
-
-    for (var i = 0; i < searcheUrlParams.length; i++) {
-      if (searcheUrlParams[i].split("=")[0] == "bid") {
-        try {
-          bid = parseInt(searcheUrlParams[i].split("=")[1]);
-        } catch (e) {
-          console.log(e);
-        }
-      }
-    };
-    axios({
-      method: 'get',
-      url: '/queryBlogById?bid=' + bid
-    }).then(function (resp) {
-      const result = resp.data.data[0];
-      blog_detail.title = result.title;
-      blog_detail.views = result.views;
-      blog_detail.tags = result.tags;
-      blog_detail.ctime = result.ctime;
-      blog_detail.content = result.content;
-    }).catch(function (resp) {
-      console.log('请求错误')
-    });
-  },
-})
-
 const send_comment = new Vue({
   el: '#send_comment',
   data: {
@@ -69,21 +25,9 @@ const send_comment = new Vue({
           alert('验证码错误');
           return;
         }
-        var searcheUrlParams = location.search.indexOf("?") > -1 ? location.search.split("?")[1].split("&") : "";
-        if (searcheUrlParams == "") {
-          return;
-        }
-        let bid = -10;
 
-        for (var i = 0; i < searcheUrlParams.length; i++) {
-          if (searcheUrlParams[i].split("=")[0] == "bid") {
-            try {
-              bid = parseInt(searcheUrlParams[i].split("=")[1]);
-            } catch (e) {
-              console.log(e);
-            }
-          }
-        };
+        let bid = -2;
+
         let reply = document.getElementById('comment_reply').value;
         let replyName = document.getElementById('comment_reply_name').value;
         let name = document.getElementById('comment_name').value;
@@ -116,8 +60,6 @@ const send_comment = new Vue({
     this.changeCode()
   },
 });
-
-
 const blog_comments = new Vue({
   el: '#blog_comments',
   data: {
@@ -136,21 +78,7 @@ const blog_comments = new Vue({
     }
   },
   created() {
-    const searchBid = location.search.indexOf('?') > -1 ?location.search.split('?')[1].split('&'):'';
-    if(searchBid == ''){
-      return ;
-    }
-    let bid = -10;
-    for(let i = 0; i < searchBid.length;i++){
-      if(searchBid[i].split('=')[0] == 'bid'){
-        try {
-          bid = searchBid[i].split('=')[1];
-        } catch (e) {
-          console.log(e)
-        }
-      }
-    }
-
+    let bid = -2;
     axios({
       method: 'get',
       url: '/queryCommentByBlogId?bid='+ bid
@@ -174,4 +102,3 @@ const blog_comments = new Vue({
     })
   },
 })
-

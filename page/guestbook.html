@@ -1,150 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>个人博客</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/guestbook.css">
 </head>
+
 <body>
     <header class="header">
         <div class="container">
-          <a href="/" class="title">我的个人博客 | 技术博客</a>
-          <ul class="menu">
-            <li><a href="./index.html">首页</a></li>
-            <li><a href="./sitemap.html">地图</a></li>
-            <li><a href="./about.html">关于</a></li>
-            <li><a href="./guestbook.html">留言</a></li>
-          </ul>
-          <div class="search_bar">
-            <input type="text" placeholder="输入关键词查找">
-            <button>搜索</button>
-          </div>
-        </div>
-      </header>
-      <div class="content">
-        <div class="content_left">
-          <div class="description">
-            <p>欢迎灌水交流，别看我长时间不发博，博主可一直都在线~</p>
-            <p style="color:red">友链只交换技术类个人博客，本博客稳定在线，所以也需要你的站尽量稳定。</p>
-            <p style="color:red">不要皮，谢谢。</p>
-          </div>
-          <div class="blog_comments">
-              <span class="blog_comments_msg">留言：目前有68 条留言</span>
-              <div class="blog_comment">
-                <span><b>园长瓜</b>：发表于 2019年12月18日 21:53[回复]</span>
-                <div>你的留言板是真的酷炫</div>
-              </div>
-              <div class="blog_comment">
-                <span><b>园长瓜</b>：发表于 2019年12月18日 21:53[回复]</span>
-                <div>你的留言板是真的酷炫</div>
-              </div>
-              <div class="blog_comment">
-                <span><b>园长瓜</b>：发表于 2019年12月18日 21:53[回复]</span>
-                <div>你的留言板是真的酷炫</div>
-              </div>
-              <div class="blog_comment">
-                <span><b>园长瓜</b>：发表于 2019年12月18日 21:53[回复]</span>
-                <div>你的留言板是真的酷炫</div>
-              </div>
-              <div class="blog_comment">
-                <span><b>园长瓜</b>：发表于 2019年12月18日 21:53[回复]</span>
-                <div>你的留言板是真的酷炫</div>
-              </div>
-              <div class="blog_comment">
-                <span><b>园长瓜</b>：发表于 2019年12月18日 21:53[回复]</span>
-                <div>你的留言板是真的酷炫</div>
-              </div>
+            <a href="/" class="title" style='line-height:70px'>我的个人博客 | 技术博客</a>
+            <ul class="menu">
+                <li><a href="/">首页</a></li>
+                <li><a href="./sitemap.html">地图</a></li>
+                <li><a href="./about.html">关于</a></li>
+                <li><a href="./guestbook.html">留言</a></li>
+            </ul>
+            <div class="search_bar">
+                <input type="text" placeholder="输入关键词查找">
+                <button>搜索</button>
             </div>
         </div>
-        <div class="content_right">
-          <div class="right_module">
-            <div>随机标签云</div>
-            <a href="/">jasdofjjsf</a>
-            <a href="/">jasdofjjsf</a>
-            <a href="/">jasdofjjsf</a>
-            <a href="/">jasdofjjsf</a>
-            <a href="/">jasdofjjsf</a>
-          </div>
-          <div class="right_module">
-            <div>最近热门</div>
-            <ul>
-              <li><a href="/">使用码云git的webhook实现生产环境代</a></li>
-              <li><a href="/">使用码云git的webhook实现生产环境代</a></li>
-              <li><a href="/">使用码云git的webhook实现生产环境代</a></li>
-              <li><a href="/">使用码云git的webhook实现生产环境代</a></li>
-              <li><a href="/">使用码云git的webhook实现生产环境代</a></li>
-            </ul>
-          </div>
-          <div class="right_module">
-            <div>最新评论</div>
-            <ul>
-              <li>
-                <div>
-                  <span>园长瓜</span>
-                  <span class="pull_right">[1天前]</span>
-                </div>
-                <p>你的留言板是真的酷炫</p>
-              </li>
-              <li>
-                <div>
-                  <span>园长瓜</span>
-                  <span class="pull_right">[1天前]</span>
-                </div>
-                <p>你的留言板是真的酷炫</p>
-              </li>
-              <li>
-                <div>
-                  <span>园长瓜</span>
-                  <span class="pull_right">[1天前]</span>
-                </div>
-                <p>你的留言板是真的酷炫</p>
-              </li>
-              <li>
-                <div>
-                  <span>园长瓜</span>
-                  <span class="pull_right">[1天前]</span>
-                </div>
-                <p>你的留言板是真的酷炫</p>
-              </li>
-            </ul>
-          </div>
-          <div class="right_module">
-            <div>友情链接</div>
-            <span><a href="/">挨踢茶馆</a></span>
-            <span><a href="/">挨踢茶馆</a></span>
-            <span><a href="/">挨踢茶馆</a></span>
-            <span><a href="/">挨踢茶馆</a></span>
-            <span><a href="/">挨踢茶馆</a></span>
-            <span><a href="/">挨踢茶馆</a></span>
-            <span><a href="/">挨踢茶馆</a></span>
-            <span><a href="/">挨踢茶馆</a></span>
-            <span><a href="/">挨踢茶馆</a></span>
-          </div>
+    </header>
+  <div class="content">
+    <div class="content_left">
+      <div class="description">
+        <p>欢迎灌水交流，别看我长时间不发博，博主可一直都在线~</p>
+        <p style="color:red">友链只交换技术类个人博客，本博客稳定在线，所以也需要你的站尽量稳定。</p>
+        <p style="color:red">不要皮，谢谢。</p>
+      </div>
+      <div class="blog_comments" id="blog_comments">
+        <span class="blog_comments_msg">当前文章：{{total}} 条留言</span>
+        <div class="blog_comment" v-for="comment in comments">
+          <span><b>{{comment.user_name}}</b>：{{comment.options}} 发表于 {{comment.ctime}} <a style="cursor: pointer"
+              v-on:click="reply(comment.id, comment.user_name)">[回复]</a></span>
+          <div>{{comment.comments}}</div>
         </div>
       </div>
-      <footer class="footer">
-        <ul>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-          <li>C/C++</li>
-        </ul>
-        <p>Copyright © 2010-2019</p>
-      </footer>
+      <div class="send_comment" id="send_comment">
+        <span>发表评论</span>
+        <div>
+          <input type="hidden" id="comment_reply" value="-1">
+          <input type="hidden" id="comment_reply_name" value="0">
+          <input type="text" placeholder="昵称" id="comment_name">
+          <input type="text" placeholder="邮箱（评论被回复时你能收到通知）" id="comment_email">
+        </div>
+        <div>
+          <textarea placeholder="无意义的内容我可能不会回复你" id="comment_content"></textarea>
+        </div>
+        <div>
+          <input type="text" placeholder="验证码" id="comment_code">
+          <span v-html="vcode" v-on:click="changeCode()" style="cursor:pointer"></span>
+        </div>
+        <button v-on:click="sendComment()">提交评论</button>
+      </div>
+    </div>
+    <div class="content_right">
+        <div class="sliderCard sCard1">
+            <div class="divBg" style="background-image: url(&quot;https://qn.itliuyang.com/headbg.jpg&quot;);">
+                <img src="https://qn.itliuyang.com/head.jpg" alt="" class="userImg"></div>
+            <div class="divBottom">
+                <p><label class="userTitle">黄后锋</label> </p>
+                <p><label class="userDetail">一步一个👣的成长</label> </p>
+                <div class="userInfo">
+                    <label>浏览：1354</label>
+                    <label>评论：0</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="right_module" id="random_tags">
+            <label>随机标签云</label>
+            <a :href="item.link" v-for='item in tagList'
+                v-bind:style='{color:randomColor(),fontSize:randomSize()}'>{{item.text}}</a>
+        </div>
+        <div class="right_module" id="new_hot">
+            <label>猜你喜欢</label>
+            <div class="ccItem" v-for='item in newList'>
+                <img :src="item.img" alt="图片" class="img">
+                <div class="ccRight">
+                    <a :href='item.link' class="ccrightTitle">{{item.title}}</a>
+                    <p class="ccTime">博客 | {{item.date}}</p>
+                </div>
+            </div>
+            <!-- <ul>
+                <li v-for='item in newList'><a v-bind:href="item.link">{{item.title}}</a></li>
+            </ul> -->
+        </div>
+        <div class="right_module" id="new_comments">
+            <label>最新评论</label>
+            <ul>
+                <li v-for='item in commentList'>
+                    <div>
+                        <span>{{item.name}}</span>
+                        <span class="pull_right">{{item.date}}</span>
+                    </div>
+                    <p>{{item.content}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
+  <footer class="footer">
+      <p>CopyRight © 2019 - 2020 by hhfblog.top .All rights reserved.</p>
+      <p>Copyright © 2010-2019</p>
+    </footer>
+  <script src="./js/axios.js"></script>
+  <script src="./js/base.js"></script>
+  <script src="./js/guestbook.js"></script>
 </body>
+
 </html>

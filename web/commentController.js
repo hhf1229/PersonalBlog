@@ -6,6 +6,18 @@ const insertTagBlogMapping = require('../dao/tagBlogMapping.js');
 const captcha = require('svg-captcha');
 const url = require('url');
 const path = new Map()
+
+function queryNewComments(request,response){
+  const params = url.parse(request.url,true).query;
+  commentDao.queryNewComments(6,function(result){
+    response.writeHead(200);
+    response.write(getResp.getResp('success','查询成功',result));
+    response.end();
+  })
+}
+
+path.set('/queryNewComments',queryNewComments)
+
 function addComment(request,response){
   const params = url.parse(request.url,true).query;
   commentDao.insertComment(parseInt(params.bid),parseInt(params.parent),params.parentName,params.userName,params.content,params.email,timeUtil.timeUtil(),timeUtil.timeUtil(),function(result){

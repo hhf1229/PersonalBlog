@@ -2,112 +2,120 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>个人博客</title>
-  <link rel="stylesheet" href="./css/base.css">
-  <link rel="stylesheet" href="./css/index.css">
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="./js/axios.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人博客</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/axios.js"></script>
 </head>
 
 <body>
-  <header class="header">
-    <div class="container">
-      <a href="/" class="title">我的个人博客 | 技术博客</a>
-      <ul class="menu">
-        <li><a href="/">首页</a></li>
-        <li><a href="./sitemap.html">地图</a></li>
-        <li><a href="./about.html">关于</a></li>
-        <li><a href="./guestbook.html">留言</a></li>
-      </ul>
-      <div class="search_bar">
-        <input type="text" placeholder="输入关键词查找">
-        <button>搜索</button>
-      </div>
-    </div>
-  </header>
-  <div class="content">
-    <div class="content_left">
-      <div class="every_day" id="every_day">
-        <span>每日一句</span>
-        <p v-html='getContent'></p>
-      </div>
-      <div class="article_list" id="article_list">
-        <div class="article" v-for='(item,index) in article_list' :key='index'>
-          <a v-bind:href="item.link" class="article_title">{{item.title}}</a>
-          <p class="article_content">{{item.content}}</p>
-          <div class="article_foot">发布于{{item.date}} | 浏览({{item.views}}) | Tags：{{item.tags}}</div>
-        </div>
-        <div class="page_tool">
-          <ul>
-            <li v-for="pageNum in pageNumList" v-on:click="jumpTo(pageNum.page)"
-              v-bind:class="{now_page:(pageNum.text == page)}">{{pageNum.text}}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="content_right">
-      <div class="right_module" id="random_tags">
-        <div>随机标签云</div>
-        <a href="/" v-for='item in tagList' v-bind:style='{color:randomColor(),fontSize:randomSize()}'>{{item}}</a>
-      </div>
-      <div class="right_module" id="new_hot">
-        <div>最近热门</div>
-        <ul>
-          <li v-for='item in newList'><a v-bind:href="item.link">{{item.title}}</a></li>
-        </ul>
-      </div>
-      <div class="right_module" id="new_comments">
-        <div>最新评论</div>
-        <ul>
-          <li v-for='item in commentList'>
-            <div>
-              <span>{{item.name}}</span>
-              <span class="pull_right">{{item.date}}</span>
+    <header class="header">
+        <div class="container">
+            <a href="/" class="title" style='line-height:70px'>HF的个人博客 | 技术博客</a>
+            <ul class="menu">
+                <li><a href="/">首页</a></li>
+                <li><a href="./sitemap.html">地图</a></li>
+                <li><a href="./about.html">关于</a></li>
+                <li><a href="./guestbook.html">留言</a></li>
+            </ul>
+            <div class="search_bar">
+                <input type="text" placeholder="输入关键词查找">
+                <button>搜索</button>
             </div>
-            <p>{{item.content}}</p>
-          </li>
-        </ul>
-      </div>
-      <div class="right_module">
-        <div>友情链接</div>
-        <span><a href="/">挨踢茶馆</a></span>
-        <span><a href="/">挨踢茶馆</a></span>
-        <span><a href="/">挨踢茶馆</a></span>
-        <span><a href="/">挨踢茶馆</a></span>
-        <span><a href="/">挨踢茶馆</a></span>
-        <span><a href="/">挨踢茶馆</a></span>
-        <span><a href="/">挨踢茶馆</a></span>
-        <span><a href="/">挨踢茶馆</a></span>
-        <span><a href="/">挨踢茶馆</a></span>
-      </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="content_left">
+            <div class="banner">
+                <img src="./img/电网.jpeg" alt="修改中">
+            </div>
+            <div class="every_day" id="every_day">
+                <span>每日一句</span>
+                <p v-html='getContent'></p>
+            </div>
+
+            <div class="article_list" id="article_list">
+                <ul>
+                    <li class="list animated" style="animation-duration: 2000ms" v-for='item in article_list'>
+                        <div class="articleContent">
+                            <div class="contentLeft">
+                                <img class="acImg" :src="item.img" alt="">
+                            </div>
+                            <div class="contentRight">
+                                <a v-bind:href='item.link' class="acTitle">{{item.title}}</a>
+                                <div class="accContent" v-html='item.content'></div>
+                                <div class="accFooter">
+                                    <div>Tags：{{item.tags}} | 发布于：{{item.date}} | 浏览：{{item.views}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="page_tool">
+                    <ul>
+                        <li v-for="pageNum in pageNumList" v-on:click="jumpTo(pageNum.page)"
+                            v-bind:class="{now_page:(pageNum.text == page)}">{{pageNum.text}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="content_right">
+            <div class="sliderCard sCard1">
+                <div class="divBg" style="background-image: url(&quot;https://qn.itliuyang.com/headbg.jpg&quot;);">
+                    <img src="https://qn.itliuyang.com/head.jpg" alt="" class="userImg"></div>
+                <div class="divBottom">
+                    <p><label class="userTitle">黄后锋</label> </p>
+                    <p><label class="userDetail">一步一个👣的成长</label> </p>
+                    <div class="userInfo">
+                        <label>浏览：1354</label>
+                        <label>评论：0</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="right_module" id="random_tags">
+                <label>随机标签云</label>
+                <a :href="item.link" v-for='item in tagList'
+                    v-bind:style='{color:randomColor(),fontSize:randomSize()}'>{{item.text}}</a>
+            </div>
+            <div class="right_module" id="new_hot">
+                <label>猜你喜欢</label>
+                <div class="ccItem" v-for='item in newList'>
+                    <img :src="item.img" alt="图片" class="img">
+                    <div class="ccRight" >
+                        <a :href='item.link'  class="ccrightTitle">{{item.title}}</a>
+                        <p class="ccTime">博客 | {{item.date}}</p>
+                    </div>
+                </div>
+                <!-- <ul>
+                    <li v-for='item in newList'><a v-bind:href="item.link">{{item.title}}</a></li>
+                </ul> -->
+            </div>
+            <div class="right_module" id="new_comments">
+                <label>最新评论</label>
+                <ul>
+                    <li v-for='item in commentList'>
+                        <div>
+                            <span>{{item.name}}</span>
+                            <span class="pull_right">{{item.date}}</span>
+                        </div>
+                        <p>{{item.content}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
-  <footer class="footer">
-    <ul>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-      <li>C/C++</li>
-    </ul>
-    <p>Copyright © 2010-2019</p>
-  </footer>
-  <script src="./js/index.js"></script>
-  <script src="./js/base.js"></script>
+    <footer class="footer">
+        <p>CopyRight © 2019 - 2020 by hhfblog.top .All rights reserved.</p>
+        <p>Copyright © 2010-2019</p>
+    </footer>
+    <script src="./js/base.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 
 </html>

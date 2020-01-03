@@ -7,12 +7,24 @@ const url = require('url');
 
 const path = new Map();
 
+function queryHotBlog(request,response){
+  const params = url.parse(request.url,true).query;
+  blogDao.queryHotBlog(7,function(result){
+    response.writeHead(200);
+    response.write(getResp.getResp('success','查询成功',result));
+    response.end();
+  })
+}
+
+path.set('/queryHotBlog',queryHotBlog);
+
 function queryBlogById(request,response){
   const params = url.parse(request.url,true).query;
   blogDao.queryBlogId(params.bid,function(result){
     response.writeHead(200);
     response.write(getResp.getResp('success','查询成功',result));
     response.end();
+    blogDao.addViews(parseInt(params.bid),function(result){});
   })
 }
 
@@ -34,7 +46,7 @@ function queryBlogPage(request,response){
     for (var i = 0 ; i < result.length ; i ++) {
       result[i].content = result[i].content.replace(/<img[\w\W]*">/, "");
       result[i].content = result[i].content.replace(/<[\w\W]{1,5}>/g, "");
-      result[i].content = result[i].content.substring(0, 300);
+      result[i].content = result[i].content.substring(0,350);
   }
     response.writeHead(200);
     response.write(getResp.getResp('success','查询成功',result));
@@ -47,7 +59,8 @@ function editBlog(request,response){
   const params = url.parse(request.url,true).query;
   const tags = params.tags.replace("，", ",");
   request.on('data',function(data){
-    blogDao.insertBlog(params.title,data.toString(),0,tags,timeUtil.timeUtil(),timeUtil.timeUtil(),function(result){
+    const obj = JSON.parse(data);
+    blogDao.insertBlog(params.title,obj.content,0,tags,obj.img,timeUtil.timeUtil(),timeUtil.timeUtil(),function(result){
       response.writeHead(200),
       response.write(getResp.getResp('success','添加成功',null));
       response.end();

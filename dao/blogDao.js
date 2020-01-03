@@ -1,7 +1,38 @@
 const dbutil = require('./dbutil.js');
-function insertBlog(title,content,views,tags,ctime,utime,success){
-  const sql = 'insert into blog(`title`,`content`,`views`,`tags`,`ctime`,`utime`) values(?,?,?,?,?,?)';
-  const params = [title,content,views,tags,ctime,utime];
+
+function queryHotBlog(size,success){
+  const sql = 'select * from blog order by views desc limit ?';
+  const params = [size];
+  const connection = dbutil.createConnection();
+  connection.connect();
+  connection.query(sql,params,function(error,result){
+    if(error == null){
+      success(result);
+    }else{
+      console.log(error)
+    }
+  })
+}
+
+function addViews(id,success){
+  const sql = 'update blog set views = views + 1 where id = ?';
+  const params = [id];
+  const connection = dbutil.createConnection();
+  connection.connect();
+  connection.query(sql,params,function(error,result){
+    if(error == null){
+      success(result)
+    }else{
+      console.log(error)
+    }
+  })
+}
+
+
+
+function insertBlog(title,content,views,tags,img,ctime,utime,success){
+  const sql = 'insert into blog(`title`,`content`,`views`,`tags`,`img`,`ctime`,`utime`) values(?,?,?,?,?,?,?)';
+  const params = [title,content,views,tags,img,ctime,utime];
   const connection = dbutil.createConnection();
   connection.connect();
   connection.query(sql,params,function(error,result){
@@ -72,5 +103,5 @@ module.exports.queryBlog = queryBlog;
 module.exports.queryPage = queryPage;
 module.exports.queryBlogCount = queryBlogCount;
 module.exports.queryBlogId = queryBlogId
-
-
+module.exports.addViews = addViews;
+module.exports.queryHotBlog = queryHotBlog;

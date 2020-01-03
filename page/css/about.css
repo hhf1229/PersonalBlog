@@ -1,49 +1,90 @@
-.description{
-  background:white;
-  border-radius:5px;
-  width:96%;
-  padding:10px 15px 20px 15px;
-  box-shadow: 3px 4px 3px #888888;
+
+
+.content{
+  width:1200px;
+  margin:10px auto;
+}
+.divMain{
+  padding: 0 10px;
+  /* float: left; */
+  width: 100%;
+  display: block;
+  background: #fff;
+}
+
+.divMain > .aboutMe{
+  background:#fff;
+  color:#000;
   text-align: left;
+  display:block;
+  border-bottom:1px solid #155c93;
+  margin-bottom:15px;
+  height:50px;
+  line-height:50px;
+  font-size: 30px;
+  padding-left:1px;
+  box-sizing: border-box;
 }
-.about_title{
-  width:95%;
-  font-weight: 600;
-  font-size:20px;
-  padding:20px 0 20px 0;
-  border-bottom:1px solid #b9b9b9;
+.aboutContent{
+  padding:0 10px;
+  text-align: left
 }
-.description > p{
-  margin-top: 5px;
-  padding:0px 0px 0px 10px;
-}
-.blog_comments{
-  width:100%;
-}
-.blog_comments_msg{
-  margin-top: 20px;
-  padding:10px;
-  display: inline-block;
-  width:100%;
-  text-align:left;
-}
-.blog_comment{
-  width:95%;
-  background:#d9edf7;
-  border:1px dashed #7ca4c1;
-  padding:10px 10px 20px 10px;
-  margin-top:10px;
-  color:#31708f;
+.beD{
+  color: #409eff;
+  background: #ecf5ff;
+  border-color: #b3d8ff;
+  font:14px/150% Microsoft YaHei,Arial,Helvetica,sans-serif;
   text-align: left;
+
 }
-.blog_comment > span{
-  display:inline-block;
-  width:100%;
-  padding-left:10px;
+
+
+.beD, .dtD, .gnD, .gyD, .tpD, .wnD {
+  min-height: 3rem;
+  border: 1px solid;
+  display: block;
+  border-radius: 5px;
+  /* white-space: pre-wrap; */
+  padding: 1rem;
+  margin: 0 auto 1rem;
 }
-.blog_comment > div{
-  display:inline-block;
-  width:100%;
-  padding-left:10px;
-  margin-top:5px;
+
+.introduce_me{
+  font:14px/150% Microsoft YaHei,Arial,Helvetica,sans-serif;
+  color: #797979;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding-bottom: 3rem;
+}
+.me_box1{
+  display: block;
+  border: 1px solid #2772ad;
+  width: 28rem;
+  text-align: left;
+  border-radius: 5px;
+  padding: 2rem;
+  position: relative;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 2rem auto 0;
+}
+.me_box1:after{
+    content: "";
+    position: absolute;
+    top: -1rem;
+    height: 2rem;
+    background: #fff;
+    line-height: 2rem;
+    color: #155a92;
+    width: 5rem;
+    text-align: center;
+}
+.introduce_me .blog_1:after{
+  content:'建站历程'
+}
+.introduce_me .blog_2:after{
+  content:'关于博客'
+}
+.introduce_me .blog_3:after{
+  content:'关于博主'
 }

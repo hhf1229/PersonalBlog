@@ -20,14 +20,22 @@
           var content = $("#editor").html();
           var title = $("#title").val();
           var tags = $("#tags").val();
+          var img = $('#img').val();
+          var obj = {
+            content:content,
+            img:img
+          } 
           $.ajax({
-            url:'/editBlog?title='+title + '&tags=' + tags,
+            url:'/editBlog?title='+title + '&tags=' + tags + '&img=' + img,
             method:'post',
-            data:content,
+            data:JSON.stringify(obj),
             success:function(resp){
               const result = JSON.parse(resp);
               alert(result.msg);
               $('#editor').html('');
+              $('#title').html('');
+              $('#tags').html('');
+              $('#img').html('');
             },
             error:function(resp){
               console.log(resp);
@@ -64,6 +72,7 @@
       <h1>文章编辑</h1>
     <input type="text" placeholder="请输入标题" id="title">
     <input type="text" placeholder="请输入标签，用逗号隔开" id="tags">
+    <input type="text" placeholder="请输入文章的图片地址" id="img">
       <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
         <div class="btn-group">
           <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>

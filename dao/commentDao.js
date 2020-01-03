@@ -1,4 +1,19 @@
 const dbutil = require('./dbutil.js');
+
+function queryNewComments(size,success){
+  const sql = 'select * from comments order by comments desc limit ?';
+  const params = [size];
+  const connection = dbutil.createConnection();
+  connection.connect();
+  connection.query(sql,params,function(error,result){
+    if(error == null){
+      success(result);
+    }else{
+      console.log(error)
+    }
+  })
+}
+
 function insertComment(blog_id,parent,parentName,user_name,comments,email,ctime,utime,success){
   const sql = 'insert into comments(`blog_id`,`parent`,`parent_name`,`user_name`,`comments`,`email`,`ctime`,`utime`) values(?,?,?,?,?,?,?,?)';
   const params = [blog_id,parent,parentName,user_name,comments,email,ctime,utime];
@@ -42,3 +57,4 @@ function queryCommentCount(blog_id,success){
 module.exports.insertComment = insertComment;
 module.exports.queryCommentByBlogId = queryCommentByBlogId;
 module.exports.queryCommentCount = queryCommentCount;
+module.exports.queryNewComments = queryNewComments;

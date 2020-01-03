@@ -12,9 +12,9 @@ function insertTags(tags,ctime,utime,success){
     }
   })
 }
-function queryTags(tag,ctime,utime,success){
+function queryTags(tag,success){
   const sql = 'select * from tags where tag=?';
-  const params = [tag,ctime,utime];
+  const params = [tag];
   const connection = dbutil.createConnection();
   connection.connect();
   connection.query(sql,params,function(error,result){
