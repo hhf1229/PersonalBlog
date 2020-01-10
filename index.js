@@ -18,7 +18,9 @@ app.get('/queryRandomTags',loader.get('/queryRandomTags'));
 app.get('/queryHotBlog',loader.get('/queryHotBlog'));
 app.get('/queryNewComments',loader.get('/queryNewComments'));
 app.get('/queryByTag',loader.get('/queryByTag'));
-app.get('/queryByTagCount',loader.get('/queryByTagCount'))
+app.get('/queryByTagCount',loader.get('/queryByTagCount'));
+app.get('/queryAllViewsCount',loader.get('/queryAllViewsCount'));
+app.get('/queryAllCommentsCount',loader.get('/queryAllCommentsCount'));
 app.listen(globalConfig['port'],function(){
   console.log('服务器已启动')
 })

@@ -2,7 +2,7 @@ const send_comment = new Vue({
   el: '#send_comment',
   data: {
     vcode: '',
-    rightCode:''
+    rightCode: ''
   },
   computed: {
     changeCode() {
@@ -21,7 +21,7 @@ const send_comment = new Vue({
     sendComment: function () {
       return function () {
         const code = document.getElementById('comment_code').value;
-        if(code.toLowerCase() != send_comment.rightCode.toLowerCase()){
+        if (code.toLowerCase() != send_comment.rightCode.toLowerCase()) {
           alert('验证码错误');
           return;
         }
@@ -33,21 +33,21 @@ const send_comment = new Vue({
         let name = document.getElementById('comment_name').value;
         let email = document.getElementById('comment_email').value;
         let content = document.getElementById('comment_content').value;
-        if(email == ''){
+        if (email == '') {
           alert('邮箱不能为空！');
           return;
         };
-        if(name == ''){
+        if (name == '') {
           alert('用户名不能为空！');
           return;
         };
-        if(content == ''){
+        if (content == '') {
           alert('评论内容不能为空！');
           return;
         }
         axios({
           method: 'get',
-          url: '/addComment?bid=' + bid + '&parent=' + reply + '&parentName='+replyName+ '&userName=' + name + '&content=' + content +'&email=' + email 
+          url: '/addComment?bid=' + bid + '&parent=' + reply + '&parentName=' + replyName + '&userName=' + name + '&content=' + content + '&email=' + email
         }).then(function (resp) {
           alert(resp.data.msg)
         }).catch(function (resp) {
@@ -65,12 +65,14 @@ const blog_comments = new Vue({
   data: {
     total: 0,
     comments: [
-      
+      {
+        ctime: ''
+      }
     ]
   },
   computed: {
-    reply:function(){
-      return function(commentId,commentName){
+    reply: function () {
+      return function (commentId, commentName) {
         document.getElementById('comment_reply').value = commentId;
         document.getElementById('comment_reply_name').value = commentName;
         location.href = '#send_comment';
@@ -81,23 +83,38 @@ const blog_comments = new Vue({
     let bid = -2;
     axios({
       method: 'get',
-      url: '/queryCommentByBlogId?bid='+ bid
+      url: '/queryCommentByBlogId?bid=' + bid
     }).then(function (resp) {
+      console.log(resp)
+      for (let i = 0; i < resp.data.data.length; i++) {
+        const time = new Date(resp.data.data[i].ctime * 1000);
+        resp.data.data[i].ctime = formatDate(time);
+      }
       blog_comments.comments = resp.data.data;
-      for(let i = 0; i < blog_comments.comments.length;i++){
-        if(blog_comments.comments[i].parent>-1){
-          blog_comments.comments[i].options = '回复@'+blog_comments.comments[i].parent_name;
+      function formatDate(now) {
+        var year = now.getFullYear();  //取得4位数的年份
+        var month = now.getMonth() + 1;  //取得日期中的月份，其中0表示1月，11表示12月
+        var date = now.getDate();      //返回日期月份中的天数（1到31）
+        var hour = now.getHours();     //返回日期中的小时数（0到23）
+        var minute = now.getMinutes(); //返回日期中的分钟数（0到59）
+        var second = now.getSeconds(); //返回日期中的秒数（0到59）
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+      }
+
+      for (let i = 0; i < blog_comments.comments.length; i++) {
+        if (blog_comments.comments[i].parent > -1) {
+          blog_comments.comments[i].options = '回复@' + blog_comments.comments[i].parent_name;
         }
       }
     }).catch(function (resp) {
       console.log(resp)
     });
     axios({
-      method:'get',
-      url:'/queryCommentCount?bid='+bid
-    }).then(function(resp){
+      method: 'get',
+      url: '/queryCommentCount?bid=' + bid
+    }).then(function (resp) {
       blog_comments.total = resp.data.data[0].count;
-    }).catch(function(resp){
+    }).catch(function (resp) {
       console.log(resp)
     })
   },

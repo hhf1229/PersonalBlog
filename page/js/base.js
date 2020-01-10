@@ -1,7 +1,7 @@
 const randomTags = new Vue({
   el: '#random_tags',
   data: {
-    tagList: []
+    tagList: [],
   },
   computed: {
     randomColor() {
@@ -28,14 +28,15 @@ const randomTags = new Vue({
         if (randomTags.tagList.length > 15) {
           return randomTags.tagList
         } else {
-          randomTags.tagList.push({text:resp.data.data[i].tag,link:'/?tag='+resp.data.data[i].tag});
+          randomTags.tagList.push({ text: resp.data.data[i].tag, link: '/?tag=' + resp.data.data[i].tag });
         }
       }
       // randomTags.tagList = resp
 
     }).catch(function (resp) {
       console.log(resp)
-    })
+    });
+
   }
 })
 
@@ -132,6 +133,35 @@ const newComments = new Vue({
       };
       newComments.commentList = result;
     }).catch(function (resp) {
+      console.log(resp);
+    })
+  }
+})
+
+const card = new Vue({
+  el: '#card',
+  data: {
+    viewsCount: '',
+    commentsCount:''
+  },
+  created() {
+    //查询浏览总量
+    axios({
+      method: 'get',
+      url: '/queryAllViewsCount'
+    }).then(function (resp) {
+      card.viewsCount = resp.data.data[0]['sum(views)'];
+    }).catch(function (resp) {
+      console.log(resp)
+    });
+
+    // 查询所有评论
+    axios({
+      method:'get',
+      url:'/queryAllCommentsCount'
+    }).then(function(resp){
+      card.commentsCount = resp.data.data[0].count;
+    }).catch(function(resp){
       console.log(resp);
     })
   }
