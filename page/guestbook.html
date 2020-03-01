@@ -5,30 +5,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>个人博客</title>
+  <title>HF的个人博客</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <link rel="stylesheet" href="./css/base.css">
-  <link rel="stylesheet" href="./css/guestbook.css">
+  <link rel="stylesheet" href="./css/base1.css">
+  <link rel="stylesheet" href="./css/guestbook1.css">
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <a href="/" class="title" style='line-height:70px'>HF的个人博客 | 技术博客</a>
-            <ul class="menu">
-                <li><a href="/">首页</a></li>
-                <li><a href="./sitemap.html">地图</a></li>
-                <li><a href="./about.html">关于</a></li>
-                <li><a href="./guestbook.html">留言</a></li>
-            </ul>
-            <div class="search_bar">
-                <input type="text" placeholder="输入关键词查找">
-                <button>搜索</button>
-            </div>
-        </div>
-    </header>
-  <div class="content">
-    <div class="content_left">
+
+  <nav class="navbar navbar-expand-lg padding navbar-light ">
+    <a class="navbar-brand" href="./index.html">HF的个人博客</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto ">
+        <li class="nav-item ">
+          <a class="nav-link" href="./index.html">首页</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./sitemap.html">地图</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./about.html">关于</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./guestbook.html">留言</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0 paddingRight">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  <div class="content container-fluid row">
+    <div class="content_left col-12 col-sm-7" >
       <div class="description">
         <p>欢迎灌水交流，别看我长时间不发博，博主可一直都在线~</p>
         <p style="color:red">友链只交换技术类个人博客，本博客稳定在线，所以也需要你的站尽量稳定。</p>
@@ -60,16 +85,16 @@
         <button v-on:click="sendComment()">提交评论</button>
       </div>
     </div>
-    <div class="content_right">
-        <div class="sliderCard sCard1">
+    <div class="content_right col-3 ">
+        <div class="sliderCard sCard1" id="card">
             <div class="divBg" style="background-image: url(&quot;https://qn.itliuyang.com/headbg.jpg&quot;);">
                 <img src="https://qn.itliuyang.com/head.jpg" alt="" class="userImg"></div>
             <div class="divBottom">
                 <p><label class="userTitle">黄后锋</label> </p>
                 <p><label class="userDetail">一步一个👣的成长</label> </p>
                 <div class="userInfo">
-                    <label>浏览：1354</label>
-                    <label>评论：0</label>
+                    <label>浏览：{{viewsCount}}</label>
+                    <label>评论：{{commentsCount}}</label>
                 </div>
             </div>
 
@@ -83,8 +108,8 @@
             <label>猜你喜欢</label>
             <div class="ccItem" v-for='item in newList'>
                 <img :src="item.img" alt="图片" class="img">
-                <div class="ccRight">
-                    <a :href='item.link' class="ccrightTitle">{{item.title}}</a>
+                <div class="ccRight" >
+                    <a :href='item.link'  class="ccrightTitle">{{item.title}}</a>
                     <p class="ccTime">博客 | {{item.date}}</p>
                 </div>
             </div>
@@ -104,15 +129,18 @@
                 </li>
             </ul>
         </div>
+
     </div>
   </div>
   <footer class="footer">
-      <p>CopyRight © 2019 - 2020 by hhfblog.top .All rights reserved.</p>
-      <p>Copyright © 2010-2019</p>
-    </footer>
-  <script src="./js/axios.js"></script>
-  <script src="./js/base.js"></script>
-  <script src="./js/guestbook.js"></script>
+    <p>CopyRight © 2019 - 2020 by hhfblog.top  <a href="http://www.beian.miit.gov.cn/" >桂ICP备20000082号</a> </p>
+    <div style="width:300px;margin:0 auto; padding:0px 0 0 0; font-size:12px ">
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=45042202000044" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="./img/备案图标.png" style="float:left; margin-right: 5px"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 0px; color:#939393;">桂公网安备 45042202000044号</p></a>
+        </div>
+</footer>
+<script src="./js/axios.js"></script>
+<script src="./js/base.js"></script>
+<script src="./js/guestbook.js"></script>
 </body>
 
 </html>

@@ -1,25 +1,25 @@
-const every_day = new Vue({
-  el: '#every_day',
-  data: {
-    content: ''
-  },
-  computed: {
-    getContent() {
-      return this.content;
-    }
-  },
-  created() {
-    // 请求数据，给content赋值
-    axios({
-      method: 'get',
-      url: '/queryEveryDay'
-    }).then(function (result) {
-      every_day.content = result.data.data[0].content
-    }).catch(function (error) {
-      console.log(error)
-    })
-  },
-})
+// const every_day = new Vue({
+//   el: '#every_day',
+//   data: {
+//     content: ''
+//   },
+//   computed: {
+//     getContent() {
+//       return this.content;
+//     }
+//   },
+//   created() {
+//     // 请求数据，给content赋值
+//     axios({
+//       method: 'get',
+//       url: '/queryEveryDay'
+//     }).then(function (result) {
+//       every_day.content = result.data.data[0].content
+//     }).catch(function (error) {
+//       console.log(error)
+//     })
+//   },
+// })
 
 const article_list = new Vue({
   el: '#article_list',

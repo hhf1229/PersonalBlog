@@ -66,7 +66,8 @@ const blog_comments = new Vue({
     total: 0,
     comments: [
       {
-        ctime: ''
+        ctime: '',
+        
       }
     ]
   },
